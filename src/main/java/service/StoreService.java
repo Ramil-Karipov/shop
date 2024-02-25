@@ -1,26 +1,26 @@
 package service;
 
-import org.springframework.stereotype.Service;
-import org.springframework.web.context.annotation.SessionScope;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
-@SessionScope
 public class StoreService {
-    private final List<Long> ids;
+    private final Basket basket;
 
-    public StoreService() {
-        ids = new ArrayList<>();
+    public StoreService(Basket basket) {
+        this.basket = basket;
+
     }
 
     public void add(List<Long> ids) {
-        this.ids.addAll(ids);
+
+        basket.add(ids);
     }
 
     public List<Long> get() {
-        return Collections.unmodifiableList(ids);
+        return basket.get();
+
     }
 }
